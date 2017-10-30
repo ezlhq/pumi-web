@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pumi.pumi_web.repository.mysql.ManageUserDAO">
+
+	<select id="selectOneByManageUser" resultType="ManageUserDto"
+		parameterType="ManageUserDto">
+		select * from manage_user
+		where
+		1 = 1
+		<if test="username != null">
+			and username = #{username}
+		</if>
+	</select>
+
+	<update id="updateById" parameterType="ManageUserDto">
+		UPDATE manage_user
+		<trim prefix="set" suffixOverrides=",">
+			<if test="username!=null">username=#{username},</if>
+			<if test="password!=null">password=#{password},</if>
+			<if test="nickname!=null">nickname=#{nickname},</if>
+			<if test="createTime!=null">create_time=#{createTime},</if>
+			<if test="lastLoginTime!=null">last_login_time=#{lastLoginTime},</if>
+		</trim>
+		WHERE id=#{id}
+	</update>
+	
+</mapper>

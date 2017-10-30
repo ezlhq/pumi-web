@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<#include "./common/head.html">
+
+<body>
+	<#include "./common/header.html">
+
+	<div id="flexslider">
+		<div id="ban">
+			<div class="jiantou_box">
+				<div class="jiantou" style="display: inline-block;">
+					<div class="jiantou_left"></div>
+					<div class="jiantou_right"></div>
+				</div>
+			</div>
+			<ul class="ban_bj">
+				<!-- <li style='background:url(/uploads/allimg/170512/1-1F5121340140-L.jpg) no-repeat center top; background-size:cover;'></li>-->
+				<li style="background: url(/images/1-1F5121340030-L.jpg) center top/cover no-repeat; left: 0px;"
+					class="on"></li>
+				<!--<li style='background:url(/uploads/allimg/170512/1-1F5121339510-L.jpg) no-repeat center top; background-size:cover;'></li> -->
+
+			</ul>
+			<div class="dian">
+				<ul class="ul_dian">
+					<li class="licurr"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="indexpro">
+		<div class="indextitle">
+			<div class="indextitle1">Product Center</div>
+			<div class="indextitle2">产品中心</div>
+		</div>
+		<div class="clear"></div>
+		<div class="prosel" >
+			<div class="prosel_nei">
+				<#assign eachOne = true>
+				<#list pruductGroup?keys as mKey>
+					<#if eachOne>
+						<div class="on">${mKey}</div>
+						<#assign eachOne = false>
+					<#else>
+						<div>${mKey}</div>
+					</#if>
+				</#list>
+
+				<div class="clear"></div>
+			</div>
+		</div>
+		<div class="prosel_xian">
+			<div style="margin-left: 475.5px; width: 42px;"></div>
+		</div>
+		<div class="proxxk">
+			
+			<#list pruductGroup?keys as mKey>
+				
+				<#assign pruducts=pruductGroup[mKey]>
+				
+				<div class="proxxk_xun" lenght="8" maxwidth="1698">
+					<div class="proxxk_xun_sel">
+					
+						<#if (pruducts?size > 1) >
+							<div class="proxxk_xun_left">
+								<img src="/images/tupian3.jpg" class="img1"> <img
+									src="/images/tupian3s.jpg" class="img2">
+							</div>
+							<div class="proxxk_xun_right">
+								<img src="/images/tupian4.jpg" class="img1"> <img
+									src="/images/tupian4s.jpg" class="img2">
+							</div>
+						</#if>
+					</div>
+					
+					<div class="proxxk_xun_box">
+						<div class="pxb_xun" style="width: 1698px;">
+							
+							<#list pruducts as pruduct>
+								<a href="/productCenter?type=${mKey}">
+									<div class="pxb_xun_img sHoverItem"
+										style="position: relative; overflow: hidden;">
+										<img class="titlepic" src="${pruduct.url}" style="height:100%;">
+									</div>
+								</a> 
+							</#list>
+							
+						</div>
+					</div>
+				</div>
+				
+			</#list>
+			
+		</div>
+	</div>
+	
+	<div class="indexabout">
+		<div class="indextitle">
+			<div class="indextitle1">about</div>
+			<div class="indextitle2">公司简介</div>
+		</div>
+		<div class="clear"></div>
+		<div class="indexabout_box">
+			<div class="indexabout_text fl">
+				${companyProfile.text_info}
+				
+				<p style="text-align: center;">
+					<a href="/company/profile" class="indexabout_link">查看详细&gt;&gt;</a>
+				</p>
+			</div>
+			<div class="indexabout_img fr">
+				<img src="/images/device_goods/companyInfo.png">
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="iaov">
+			<img src="/images/bg38.png" class="iaov1"><img
+				src="/images/bg38s.png" class="iaov2">
+		</div>
+		<div class="clear"></div>
+	</div>
+
+	<#include "./common/footer.html" />
+</body>
+</html>

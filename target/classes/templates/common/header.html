@@ -1,0 +1,155 @@
+
+	<div class="pctop1">
+		<div class="pctop1_nei">
+			<div class="fl pctop1_left  pc">欢迎光临 苏州普米新精密机械有限公司</div>
+		</div>
+	</div>
+
+	<div class="pcto pc">
+		<div class="pcto_box pc">
+			<a href="/" class="fl pcto_logo"><img
+				src="/images/bg7.png"></a>
+			<div class="pcto_menu">
+			
+				<div class="pcto_menu_xun <#switch pageEnum> <#case 'index'>  on </#switch>">
+					<a href="/" class="pcto_menu_a">网站首页</a>
+				</div>
+				
+				<div class="pcto_menu_xun yxl <#switch pageEnum> <#case 'showDevice'>  <#case 'companyProfile'> on </#switch>">
+					<a href="/company/profile"
+						class="pcto_menu_a">关于我们</a>
+					<div class="pcto_xl">
+						<a href="/company/profile">公司简介</a> 
+						<a href="/showDevice">设备展示</a>
+					</div>
+					<div class="pcto_bg"></div>
+				</div>
+				
+				<div class="pcto_menu_xun yxl <#if pageEnum == 'productCenter'> on </#if>">
+					<a href="/productCenter" class="pcto_menu_a">产品中心</a>
+					<div class="pcto_xl">
+						<#list pruductGroup?keys as mKey>
+							<a href="/productCenter?type=${mKey}">${mKey}</a>
+						</#list>
+					</div>
+					<div class="pcto_bg"></div>
+				</div>
+				
+				<!--
+				<div class="pcto_menu_xun yxl ">
+					<a href="http://localhost/a/jishu/" class="pcto_menu_a">技术优势</a>
+					<div class="pcto_xl">
+						<a href="http://localhost/a/jishu/jichuzhishi/">基础知识</a> <a
+							href="http://localhost/a/jishu/guzhangchuli/">故障处理</a> <a
+							href="http://localhost/a/jishu/weihubaoyang/">维护保养</a> <a
+							href="http://localhost/a/jishu/ziliaowendang/">资料文档</a>
+					</div>
+					<div class="pcto_bg"></div>
+				</div>
+				
+				<div class="pcto_menu_xun yxl ">
+					<a href="http://localhost/a/news/" class="pcto_menu_a">新闻动态</a>
+					<div class="pcto_xl">
+						<a href="http://localhost/a/news/gongsixinwen/">公司新闻</a> <a
+							href="http://localhost/a/news/xingyexinwen/">行业新闻</a>
+					</div>
+					<div class="pcto_bg"></div>
+				</div>
+				-->
+				
+				<div class="pcto_menu_xun yxl  <#if pageEnum == 'jobInfo'> on </#if>">
+					<a href="/jobInfo" class="pcto_menu_a">人才招聘</a>
+				</div>
+				<div class="pcto_menu_xun yxl <#if pageEnum == 'contact'> on </#if>">
+					<a href="/contact" class="pcto_menu_a">联系我们</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div class="mot mo">
+		<a href="/" class="molo"><img
+			src="/images/bg41.png"></a> <img
+			src="/images/bg37.png" class="momenuicon openicon"> <img
+			src="/images/bg36.png" class="momenuicon cloesicon">
+	</div>
+	
+	<div class="moxl" style="height: 539px;z-index: 9999">
+		<div class="moxl_box">
+		
+			<div class="moxl_xun">
+				<a href="/" class="moxl_xun_title">首页</a>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="moxl_xun">
+				<div class="moxl_xun_icon">
+					<img src="/images/bg39.png" class="moxl_xun_img1"><img
+						src="/images/bg40.png" class="moxl_xun_img2">
+				</div>
+				<a href="/company/profile"
+					class="moxl_xun_title">关于我们</a>
+				<div class="moxl_erji">
+					<a href="/company/profile">公司简介</a>
+					<a href="/showDevice">设备展示</a>
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+			<div class="moxl_xun">
+				<div class="moxl_xun_icon">
+					<img src="/images/bg39.png" class="moxl_xun_img1"><img
+						src="/images/bg40.png" class="moxl_xun_img2">
+				</div>
+				
+				<a href="/productCenter" class="moxl_xun_title">产品中心</a>
+				<div class="moxl_erji">
+					<#list pruductGroup?keys as mKey>
+						<a href="/productCenter?type=${mKey}">${mKey}</a>
+					</#list>
+					<div class="clear"></div>
+				</div>
+				
+				<div class="clear"></div>
+			</div>
+			
+			
+			<div class="moxl_xun">
+				<div class="moxl_xun_icon">
+					<img src="/images/bg39.png" class="moxl_xun_img1"><img
+						src="/images/bg40.png" class="moxl_xun_img2">
+				</div>
+				<a href="/jobInfo" class="moxl_xun_title">人才招聘</a>
+				<div class="moxl_erji">
+					<div class="clear"></div>
+				</div>
+				<div class="clear"></div>
+			</div>
+			
+				<div class="moxl_xun">
+					<div class="moxl_xun_icon">
+						<img src="/images/bg39.png" class="moxl_xun_img1"><img
+							src="/images/bg40.png" class="moxl_xun_img2">
+					</div>
+			<!--
+					<a href="/contact" class="moxl_xun_title">联系我们</a>
+					<div class="moxl_erji">
+						<div class="clear"></div>
+					</div>
+			-->
+					<div class="clear"></div>
+				</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+		<!-- 如果不加上，弹出框就出不来，不知道为啥 -->
+		<div class="prosel" style="display:none;">
+			<div class="prosel_nei">
+				
+				<div class="clear"></div>
+			</div>
+		</div>
+

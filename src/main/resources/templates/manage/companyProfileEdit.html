@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+		<#include "./common/head.html">
+
+	<body>
+	<style>
+		textarea, input[type="text"] {
+			color:black;
+		}
+	</style>
+	
+		<#include "./common/header.html">
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<#include "./common/nav.html">
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:;">Home</a>
+							</li>
+
+							<li class="active">公司简介 </li>
+						</ul>
+						
+					 	
+					</div>
+					
+
+					<div class="page-content">
+						<div class="row">
+						
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+										<div class="widget-box" style="width: 50%; margin: 0 auto;">
+											<div class="widget-header">
+												<h4>Default</h4>
+											</div>
+											
+											<div class="widget-body">
+												<div class="widget-main no-padding">
+													<form class="form-horizontal" role="form">
+														<!-- <legend>Form</legend> -->
+
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 电话 ：</label>
+															<div class="col-sm-10">
+																<input type="text" id="tele_phone" placeholder="电话" value="${companyProfile.tele_phone!""}" class="col-xs-10 col-sm-10">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1">  邮箱  ：</label>
+															<div class="col-sm-10">
+																<input type="text" id="email" placeholder="邮箱" value="${companyProfile.email!""}" class="col-xs-10 col-sm-10">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 手机 ： </label>
+															<div class="col-sm-10">
+																<input type="text" id="phone" placeholder="手机" value="${companyProfile.phone!""}" class="col-xs-10 col-sm-10">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 传真  ： </label>
+															<div class="col-sm-10">
+																<input type="text"  id="fax" placeholder="传真" value="${companyProfile.fax!""}"  class="col-xs-10 col-sm-10">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 地址 ： </label>
+															<div class="col-sm-10">
+																<input type="text" id="address" placeholder="地址"  value="${companyProfile.address!""}" class="col-xs-10 col-sm-10">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 简介  ：</label>
+															<div class="col-sm-10">
+																<textarea class="col-xs-10 col-sm-10" id="text_info" style="height: 250px;" >${companyProfile.text_info!""}</textarea>
+															</div>
+														</div>
+														
+
+														<div class="form-actions center">
+															<button type="button" id="submit_edit" class="btn btn-sm btn-success">
+																Submit
+																<i class="icon-arrow-right icon-on-right bigger-110"></i>
+															</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+						</div>
+						
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+			</div><!-- /.main-container-inner -->
+		</div><!-- /.main-container -->
+		
+		
+	
+		<#include "./common/footer.html">
+		
+</body>
+</html>
+
+<script>
+
+
+$(function(){
+
+	$('#submit_edit').click(function(){
+		var data = {
+			"tele_phone" : $('#tele_phone').val(),
+			"email"      : $('#email').val(),
+			"phone"      : $('#phone').val(),
+			"fax"        : $('#fax').val(),
+			"address"    : $('#address').val(),
+			"text_info"  : $('#text_info').val()
+		};
+		$.ajax({
+			url:'/management/companyProfile/edit',
+			data:data,
+			type:'post',
+			dataType:'json',
+			success:function(result){
+				if(result.status==200){
+					window.location.reload();
+				}
+				if(result.status==500){
+					alert(result.msg);
+				}
+			},error:function(){alert('系统错误!');}
+		
+		});
+	
+	});
+
+});
+	
+
+
+</script>
+

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+		<#include "./common/head.html">
+
+	<body>
+	<style>
+		textarea, input[type="text"] {
+			color:black;
+		}
+	</style>
+	
+		<#include "./common/header.html">
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<#include "./common/nav.html">
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:;">Home</a>
+							</li>
+
+							<li class="active">修改密码 </li>
+						</ul>
+						
+					 	
+					</div>
+					
+
+					<div class="page-content">
+						<div class="row">
+						
+							<div class="col-xs-12">
+								<!-- PAGE CONTENT BEGINS -->
+
+										<div class="widget-box" style="width: 50%; margin: 0 auto;">
+											<div class="widget-header">
+												<h4>Default</h4>
+											</div>
+											
+											<div class="widget-body">
+												<div class="widget-main no-padding">
+													<form class="form-horizontal" role="form">
+														<!-- <legend>Form</legend> -->
+
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 原密码 ：</label>
+															<div class="col-sm-10">
+																<input type="password" id="password_old" placeholder="原密码"  class="col-xs-10 col-sm-10">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 新密码 ：</label>
+															<div class="col-sm-10">
+																<input type="password" id="password_new_0" placeholder="新密码" class="col-xs-10 col-sm-10">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="col-sm-2 control-label no-padding-right" for="form-field-1"> 确认 ：</label>
+															<div class="col-sm-10">
+																<input type="password" id="password_new_1" placeholder="新密码"  class="col-xs-10 col-sm-10">
+															</div>
+														</div>
+														
+														
+
+														<div class="form-actions center">
+															<button type="button" id="submit_edit" class="btn btn-sm btn-success">
+																Submit
+																<i class="icon-arrow-right icon-on-right bigger-110"></i>
+															</button>
+														</div>
+													</form>
+												</div>
+											</div>
+										</div>
+						</div>
+						
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+			</div><!-- /.main-container-inner -->
+		</div><!-- /.main-container -->
+		
+		
+	
+		<#include "./common/footer.html">
+		
+</body>
+</html>
+
+<script>
+
+
+$(function(){
+
+	$('#submit_edit').click(function(){
+		if(!$('#password_old').val()){
+			alert('请填写旧密码');
+			return ;
+		}
+		if(!$('#password_new_0').val()){
+			alert('请填写新密码');
+			return ;
+		}
+		if(!$('#password_new_1').val()){
+			alert('请填写重复新密码');
+			return ;
+		}
+		
+		
+		var data = {
+			"password_old" : $('#password_old').val(),
+			"password_new_0"      : $('#password_new_0').val(),
+			"password_new_1"      : $('#password_new_1').val()
+		};
+		$.ajax({
+			url:'/management/user/edit',
+			data:data,
+			type:'post',
+			dataType:'json',
+			success:function(result){
+				if(result.status==200){
+					alert('修改成功');
+					window.location.reload();
+				}
+				if(result.status==500){
+					alert(result.msg);
+				}
+			},error:function(){alert('系统错误!');}
+		
+		});
+	
+	});
+
+});
+	
+
+
+</script>
+

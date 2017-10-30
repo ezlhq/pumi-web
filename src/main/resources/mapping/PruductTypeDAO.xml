@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pumi.pumi_web.repository.mysql.PruductTypeDAO">
+
+	<select id="selectList" resultType="PruductTypeDto">
+		select 
+			pruduct_type_id as pruductTypeId,
+			type_name as typeName,
+			img_type as imgType
+		from pruduct_type
+	</select>
+	
+	
+	<select id="selectPruductImgList" resultType="PruductTypeDto" parameterType="java.util.List">
+		select  
+			pt.pruduct_type_id as pruductTypeId,
+			pt.type_name as typeName,
+			pt.img_type as imgType,
+			
+			m.img_id    	as  imgId     ,
+			m.name        as  name      ,
+			m.url         as  url       ,
+			m.create_id   as  createId  ,
+			m.create_time as  createTime,
+			m.update_time as  updateTime
+		from 
+			pruduct_type pt JOIN img m ON pt.img_type = m.img_type
+		where
+			 <foreach collection="list" item="ptype" open="" close="" separator="OR">  
+			  	 pt.img_type = #{ptype}  
+			  </foreach>  
+		order by 
+			pt.img_type , m.create_time
+	</select>
+
+
+</mapper>

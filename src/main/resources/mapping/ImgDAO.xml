@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pumi.pumi_web.repository.mysql.ImgDAO">
+
+	<insert id="addImg" >
+		INSERT INTO img (
+			img_type      ,
+			name          ,
+			url           ,
+			create_id     ,
+			create_time   ,
+			update_time   
+		) VALUES (
+			#{ImgType     },
+			#{name        },
+			#{url         },
+			#{createId    },
+			#{createTime  },
+			#{updateTime  }
+		)
+	</insert>
+	
+	<update id="updateById" parameterType="ManageUserDto">
+		UPDATE img
+		<trim prefix="set" suffixOverrides=",">
+			<if test="ImgType!=null">img_type=#{ImgType},</if>
+			<if test="name!=null">name=#{name},</if>
+			<if test="url!=null">url=#{url},</if>
+			<if test="updateTime!=null">updateTime=#{updateTime},</if>
+		</trim>
+		WHERE img_id=#{ImgId}
+	</update>
+	
+	<update id="removeById" parameterType="ImgDto">
+		delete from img
+		WHERE img_id=#{ImgId}
+	</update>
+
+
+</mapper>

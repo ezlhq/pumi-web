@@ -1,0 +1,111 @@
+
+	<div class="footer" style="padding-top:30px;min-height:280px;">
+		<div class="footer1">
+			<div class="fl footer1_xun1">
+				<div class="footer1_title">关于我们</div>
+				<div class="footer1_xun1_box">
+					<a href="/company/profile">公司简介</a> 
+					<a href="/showDevice">设备展示</a>
+					<div class=" clear"></div>
+				</div>
+			</div>
+			<div class="fl footer1_xun1">
+				<div class="footer1_title">产品中心</div>
+				
+				<div class="footer1_xun1_box">
+					<#list pruductGroup?keys as mKey>
+						<a href="/productCenter?type=${mKey}">${mKey}</a>
+					</#list>
+					<div class=" clear"></div>
+				</div>
+				
+			</div>
+			
+			<div class="fr footer1_xun2">
+				<div class="footer1_title">联系我们</div>
+				<table cellpadding="0" cellspacing="0">
+					<tbody>
+						<tr>
+							<td height="60" width="32" class="footericon"><img
+								src="/images/bg8.png"></td>
+							<td><span>
+									<p style="line-height: 12px;">TELEPHONE</p>
+									<p
+										style="font-size: 21px; color: #FFFFFF; font-weight: bolder; line-height: 21px;"> ${companyProfile.tele_phone!""}</p>
+							</span></td>
+						</tr>
+						<tr>
+							<td align="right" height="25" class="footericon"><img
+								src="/images/bg9.png"></td>
+							<td>
+							<span>公司地址：${companyProfile.address!""}</span>
+							</td>
+						</tr>
+						<tr>
+							<td align="right" height="25" class="footericon"><img
+								src="/images/bg10.png"></td>
+							<td><span>邮箱：${companyProfile.email!""}</span></td>
+						</tr>
+						<tr>
+							<td align="right" height="25" class="footericon"><img
+								src="/images/bg10.png"></td>
+							<td><span>传真：${companyProfile.fax!""}</span></td>
+						</tr>
+						<tr>
+							<td align="right" height="25" class="footericon"><img
+								src="/images/bg11.png"></td>
+							<td><span>手机：${companyProfile.phone!""}</span></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class=" clear"></div>
+		</div>
+		<div class="footer2">
+			<div class="footer2_nei">
+				<span class="fl">Copyright © 苏州普米新精密机械有限公司 版权所有</span> <span
+					class="fr">粤ICP65985475-1</span>
+			</div>
+		</div>
+	</div>
+
+
+	<!--<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script> -->
+	<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/js/bootstrap.min.js"></script>
+	<!-- <script src="/js/bootstrap.js"></script>-->
+	<!-- <script src="/js/npm.js"></script> -->
+	<script src="/js/indexglobal.js"></script>
+	<script src="/js/global.js"></script>
+	<script>
+	
+		window.onload = function() {
+
+			var a = new sHover("sHoverItem", "sIntro");
+			a.set({
+				slideSpeed : 5,
+				opacityChange : true,
+			});
+
+		};
+	</script>
+	<script>
+		window._bd_share_config = {
+			"common" : {
+				"bdSnsKey" : {},
+				"bdText" : "",
+				"bdMini" : "2",
+				"bdMiniList" : false,
+				"bdPic" : "",
+				"bdStyle" : "0",
+				"bdSize" : "16"
+			},
+			"share" : {}
+		};
+		with (document)
+			0[(getElementsByTagName('head')[0] || body)
+					.appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='
+					+ ~(-new Date() / 36e5)];
+	</script>

@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+	
+		<#include "./common/head.html">
+
+		<style>
+			.ace-thumbnails>li{
+				border:0;
+				overflow: inherit;
+			}
+			.ace-thumbnails li span{
+				position: absolute;
+				color: rgb(114, 114, 114);
+				font-size: 14px;
+				
+				width: 100%;
+				word-wrap: break-word;
+				word-break: normal;
+			}
+			.row .marginButtom{
+				margin-bottom: 50px;
+			}
+		</style>
+		
+	<body>
+	
+		<#include "./common/header.html">
+
+		<div class="main-container" id="main-container">
+			<script type="text/javascript">
+				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
+			</script>
+
+			<div class="main-container-inner">
+				<a class="menu-toggler" id="menu-toggler" href="#">
+					<span class="menu-text"></span>
+				</a>
+
+				<#include "./common/nav.html">
+
+				<div class="main-content">
+					<div class="breadcrumbs" id="breadcrumbs">
+						<script type="text/javascript">
+							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+						</script>
+
+						<ul class="breadcrumb">
+							<li>
+								<i class="icon-home home-icon"></i>
+								<a href="javascript:;">Home</a>
+							</li>
+
+							<li class="active">图片添加与展示 </li>
+						</ul>
+						
+					 	<button class="btn btn-primary " style="float:right;" data-toggle="modal" data-target="#myModal">添加新的图片</button>
+					 	
+					</div>
+					
+
+					<div class="page-content">
+						<div class="row">
+						
+							<#list pruductGroup?keys as mKey>
+								<#assign pruducts=pruductGroup[mKey]>
+								
+							    <div class="col-xs-12 marginButtom">
+									<h1>${mKey}</h1>
+									
+									<div class="row-fluid">
+										<ul class="ace-thumbnails">
+										
+											<#list pruducts as pruduct>
+												<li>
+													<div style="overflow: hidden;">
+														<a href="javascript:;" data-rel="colorbox" class="cboxElement">
+															<img alt="150x150" style="width: 150px; height: 150px;" src="${pruduct.url}">
+															
+														</a>
+														<div class="tools tools-top">
+																<!-- <a href="#">
+																	<i class="icon-pencil"></i>
+																</a> -->
+																<a href="#">
+																	<i class="icon-remove red" data-id="${pruduct.imgId}"></i>
+																</a>
+														</div>
+													</div>
+													<span>${pruduct.name!""}</span>												
+												</li>
+											</#list>
+											
+										</ul>
+									</div>
+								</div>
+							 </#list>
+							
+							
+						</div><!-- /.row -->
+					</div><!-- /.page-content -->
+				</div><!-- /.main-content -->
+
+				
+			</div><!-- /.main-container-inner -->
+
+		</div><!-- /.main-container -->
+
+		<#include "./common/footer.html">
+		
+</body>
+</html>
+
+<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="/js/ajaxfileupload.js"></script>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">新增</h4>
+            </div>
+            <div class="modal-body">
+            
+            	<div class="ace-file-input" style="margin-top: 20px;">
+					<input type="text" id="img_name" placeholder="名称" class="col-xs-10 col-sm-5">
+				</div>
+				
+            	<div class="ace-file-input">
+					<select class="width-80 " id="imgType" data-placeholder="imgType...">
+						<option >请选择图片类型</option>
+						<#list pruductTypes as pruduct>
+							<option value="${pruduct.imgType}">${pruduct.typeName}</option>
+						</#list>
+					</select>
+				</div>
+            
+            
+				<input id="msgData" name="img" class="hidden" multiple="" type="file">
+            	<div class="ace-file-input" id="uploadMsgDiv">
+            		<input type="file" id="">
+            		<label class="file-label" data-title="Choose">
+            		<span id="imgName" class="file-name" data-title="上传图片 ...">
+            		<i class="icon-upload-alt"></i></span></label><a class="remove" href="#"><i class="icon-remove"></i></a>
+            	</div>
+            	<img id="img_img" style="width: 100%;height:250px;" src="">
+            	
+				
+			
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" id="add_submit" class="btn btn-primary">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<script>
+$(function(){
+	$('#uploadMsgDiv').click(function(){
+		$('#msgData').click();
+	});
+	$('#msgData').change(function(){
+		var fileImg = this.files[0];
+		$('#imgName').attr('data-title',fileImg.name);
+		var url = URL.createObjectURL(fileImg);
+		$('#img_img').attr('src',url);
+	});
+	$('#add_submit').click(function(){
+		var fileImg = $('#msgData')[0].files;
+		if(!fileImg){
+			alert('图片不能为空');
+			return ;
+		}
+		
+		if(!$('#imgType').val()){
+			alert('图片类型不能为空');
+			return ;
+		}
+		
+		
+		$.ajaxFileUpload({
+			url:'/management/add/img',
+			type:'post',
+			data:{'name':$('#img_name').val(),'imgType':$('#imgType').val()},
+			fileElementId:'msgData',
+			dataType:'json',
+			success:function(result){
+				if(result.status==200){
+					window.location.reload();
+				}
+				if(result.status==500){
+					alert(result.msg);
+				}
+			},
+			error:function(){
+				alert("系统错误");
+			}
+		});
+		
+	
+	});
+	
+});
+</script>
+
+
+<script>
+$(function(){
+	$('.icon-remove').click(function(){
+		if(!confirm('确认删除?')){
+			return false;
+		}
+		var imgId = $(this).attr('data-id');
+		
+		$.ajax({
+			url:'/management/remove/img',
+			data:{'imgId':imgId},
+			dataType:'json',
+			success:function(result){
+				if(result.status==200){
+					window.location.reload();
+				}
+				if(result.status==500){
+					alert(result.msg);
+				}
+			},
+			error:function(){
+				alert("系统错误");
+			}
+		});
+	});
+
+});
+</script>
+
+
+

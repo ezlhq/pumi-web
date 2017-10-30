@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<#include "./common/head.html">
+
+<style>
+ 
+</style>
+
+<body>
+	<#include "./common/header.html">
+	
+	<div class="neibanner" style="background:url(/images/banner_about.jpg) no-repeat 50%; background-size: cover;"></div>
+	<div class="neipagename">
+	  <div class="pagename_en">ABOUT US</div>
+	  <br>
+	  <div class="pagename_ch">
+	    <div>关于我们</div>
+	  </div>
+	</div>
+	<div class="neimenu">
+	  <div> 
+	  	<a href="/company/profile" class="on">公司简介</a> 
+	  	<a href="/showDevice" >设备展示</a> 
+	  </div>
+	</div>
+	
+	<div class="about" deep="0"> &nbsp;
+		<div align="center"> <img alt="" style="width: 800px; " src="/images/device_goods/companyInfo.png">
+		</div>
+		<br data-filtered="filtered">
+		
+		${companyProfile.text_info}
+		
+	</div>
+	
+	
+ 
+
+	<#include "./common/footer.html" />
+</body>
+</html>

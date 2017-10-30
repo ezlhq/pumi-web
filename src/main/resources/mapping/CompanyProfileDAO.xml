@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.pumi.pumi_web.repository.mysql.CompanyProfileDAO">
+
+	<select id="selectCompanyProfileOne" resultType="CompanyProfileDto">
+		select * from company_profile;
+	</select>
+	
+	<update id="updateOne" parameterType="CompanyProfileDto">
+		UPDATE company_profile
+		<trim prefix="set" suffixOverrides=",">
+			<if test="shot_name!=null">shot_name=#{shot_name},</if>
+			<if test="email!=null">email=#{email},</if>
+			<if test="phone!=null">phone=#{phone},</if>
+			<if test="tele_phone!=null">tele_phone=#{tele_phone},</if>
+			<if test="fax!=null">fax=#{fax},</if>
+			<if test="address!=null">address=#{address},</if>
+			<if test="text_info!=null">text_info=#{text_info},</if>
+		</trim>
+	</update>
+
+</mapper>
